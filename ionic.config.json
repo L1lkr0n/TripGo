@@ -1,0 +1,7 @@
+{
+  "name": "Itinerario_Inteligente",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
