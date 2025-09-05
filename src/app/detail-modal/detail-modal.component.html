@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles del lugar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label position="stacked">Hora</ion-label>
+    <ion-input [(ngModel)]="item.time" placeholder="Ej: 09:00 AM"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Transporte</ion-label>
+    <ion-select [(ngModel)]="item.transport">
+      <ion-select-option value="walking">🚶 A pie</ion-select-option>
+      <ion-select-option value="car">🚗 Auto</ion-select-option>
+      <ion-select-option value="bus">🚌 Transporte público</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Notas</ion-label>
+    <ion-textarea [(ngModel)]="item.description" placeholder="Detalles o recordatorios"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="block" (click)="save()">Guardar</ion-button>
+
+</ion-content>

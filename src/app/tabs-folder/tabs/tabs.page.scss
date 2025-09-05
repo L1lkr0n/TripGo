@@ -1,0 +1,36 @@
+/* Tab Bar general */
+.modern-tab-bar {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+  margin: 0 10px;
+  height: 75px; /* altura suficiente para icono + label */
+}
+
+/* Cada tab */
+.modern-tab {
+  flex: 1;
+  color: #ffffff;
+  transition: transform 0.2s, color 0.2s;
+  border-radius: 15px;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem; /* tamaño de label ajustado */
+}
+
+.modern-tab ion-icon {
+  font-size: 1.5rem; /* iconos grandes */
+  margin-bottom: 2px;
+  display: block;
+}
+
+/* Tab seleccionado */
+ion-tab-button.tab-selected.modern-tab {
+  transform: translateY(-3px) scale(1.05);
+  color: #ffd700 !important; /* dorado */
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
