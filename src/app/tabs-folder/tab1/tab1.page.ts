@@ -3,6 +3,15 @@ import { SharedModule } from 'src/app/shared/shared-module';
 import { ModalController } from '@ionic/angular';
 import { DetailModalComponent } from 'src/app/detail-modal/detail-modal.component';
 import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { arrowForwardOutline, trashOutline, pencilOutline } from 'ionicons/icons';
+
+// Registrar el icono del FAB
+addIcons({
+  'arrow-forward-outline': arrowForwardOutline,
+  'trash-outline': trashOutline,
+  'pencil-outline': pencilOutline
+});
 
 @Component({
   selector: 'app-tab1',
@@ -15,40 +24,39 @@ export class Tab1Page {
 
   constructor(private modalCtrl: ModalController, private router: Router) {}
 
-  async openDetails(index: number) {
-    const modal = await this.modalCtrl.create({
-      component: DetailModalComponent,
-      componentProps: { item: { ...this.itinerary[index] } },
-    });
+async openDetails(index: number) {
+  const modal = await this.modalCtrl.create({
+    component: DetailModalComponent,
+    componentProps: { item: { ...this.itinerary[index] } },
+  });
 
-    modal.onDidDismiss().then((res) => {
-      if (res.data) {
-        this.itinerary[index] = res.data;
+  modal.onDidDismiss().then((res) => {
+    if (res.data) {
+      this.itinerary[index] = res.data;
 
-        // Si el usuario llenó algo y es el último card → crea uno nuevo vacío
-        if (
-          index === this.itinerary.length - 1 &&
-          this.itinerary[index].title.trim() !== ''
-        ) {
-          this.itinerary.push({
-            title: '',
-            time: '',
-            description: '',
-            transport: '',
-          });
-        }
+      // Si el usuario llenó algo y es el último card → crea uno nuevo vacío
+      const lastIndex = this.itinerary.length - 1;
+      const lastCard = this.itinerary[lastIndex];
+      if (
+        lastCard.title.trim() !== '' ||
+        lastCard.time.trim() !== '' ||
+        lastCard.description.trim() !== ''
+      ) {
+        // Solo agrega uno nuevo si el último card está lleno
+        this.itinerary.push({ title: '', time: '', description: '', transport: '' });
       }
-    });
+    }
+  });
 
-    await modal.present();
-  }
+  await modal.present();
+}
+
   deleteCard(index: number) {
     if (this.itinerary.length > 1) {
       this.itinerary.splice(index, 1);
     }
   }
 
-  // Agregar método que verifica si hay al menos un card lleno
   hasFilledCard(): boolean {
     // Ignora el último card (vacío)
     return this.itinerary

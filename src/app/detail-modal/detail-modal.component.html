@@ -9,6 +9,12 @@
 
 <ion-content class="ion-padding">
 
+  <!-- Nuevo campo destino -->
+  <ion-item>
+    <ion-label position="stacked">Destino</ion-label>
+    <ion-input [(ngModel)]="item.title" placeholder="Escribe el destino..."></ion-input>
+  </ion-item>
+
   <ion-item>
     <ion-label position="stacked">Hora</ion-label>
     <ion-input [(ngModel)]="item.time" placeholder="Ej: 09:00 AM"></ion-input>
