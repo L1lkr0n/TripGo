@@ -1,6 +1,6 @@
 /* Tab Bar general */
 .modern-tab-bar {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background-color: #ffffff;
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
   margin: 0 10px;
@@ -10,7 +10,7 @@
 /* Cada tab */
 .modern-tab {
   flex: 1;
-  color: #ffffff;
+  color: black;
   transition: transform 0.2s, color 0.2s;
   border-radius: 15px;
   padding: 5px 0;
