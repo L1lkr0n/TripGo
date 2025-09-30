@@ -6,6 +6,21 @@
   align-items: center;
   height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
 }
+p {
+    margin: 5px;
+}
+.card {
+  border-radius: 10%;
+  background-color: #007bff; 
+  box-shadow: (offset-x) (offset-y) (blur-radius) (spread-radius) (color);
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),  // Sombra suave para la elevación
+    0 8px 15px rgba(0, 0, 0, 0.15); // Sombra más grande y definida para el "borde"
+}
+.myRadioButtons {
+    display: flex;
+    justify-content: space-around;
+}
 ion-card {
   transition: transform 0.2s, box-shadow 0.2s;
   background-color: rgb(255, 255, 255);

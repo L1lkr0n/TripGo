@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  weatherApiKey: 'a2407afe1f39a10fb0900fa822a9d34e'
+  weatherApiKey: 'fdb9df792e8c62ebc883503d40ad6f0a'
 };
 
 
