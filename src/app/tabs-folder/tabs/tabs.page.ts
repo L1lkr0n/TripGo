@@ -5,14 +5,13 @@ import { addIcons } from 'ionicons';
 import { triangle, ellipse, square } from 'ionicons/icons';
 
 // Importar los iconos específicos
-import { homeOutline, searchOutline, mapOutline, personOutline } from 'ionicons/icons';
+import { homeOutline,personOutline,addCircleOutline } from 'ionicons/icons';
 
 // Registrar iconos
 addIcons({
   'home-outline': homeOutline,
-  'search-outline': searchOutline,
-  'map-outline': mapOutline,
-  'person-outline': personOutline
+  'person-outline': personOutline,
+  'add-circle-outline': addCircleOutline
 });
 
 @Component({

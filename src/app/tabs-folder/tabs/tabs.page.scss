@@ -1,7 +1,6 @@
 /* Tab Bar general */
 .modern-tab-bar {
   background-color: #ffffff;
-  border-radius: 20px 20px 0 0;
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
   margin: 0 10px;
   height: 75px; /* altura suficiente para icono + label */
@@ -30,7 +29,7 @@
 /* Tab seleccionado */
 ion-tab-button.tab-selected.modern-tab {
   transform: translateY(-3px) scale(1.05);
-  color: #ffd700 !important; /* dorado */
+  color: #000000 !important; /* dorado */
   background: rgba(255,255,255,0.1);
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
