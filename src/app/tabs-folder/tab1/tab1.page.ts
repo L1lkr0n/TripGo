@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared-module';
 import { ModalController } from '@ionic/angular';
 import { DetailModalComponent } from 'src/app/detail-modal/detail-modal.component';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { arrowForwardOutline, trashOutline, pencilOutline } from 'ionicons/icons';
-
+import { WeatherService } from 'src/app/weather.service';
 // Registrar el icono del FAB
 addIcons({
   'arrow-forward-outline': arrowForwardOutline,
@@ -19,10 +19,53 @@ addIcons({
   styleUrls: ['tab1.page.scss'],
   imports: [SharedModule],
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   itinerary = [{ title: '', time: '', description: '', transport: '' }];
 
-  constructor(private modalCtrl: ModalController, private router: Router) {}
+  myWeather: any;
+  temperature: number = 0;
+  feelsLikeTemp: number = 0;
+  humidity: number = 0;
+  pressure: number = 0;
+  summary: string = '';
+  iconURL: string = '';
+  city: string = 'Santiago';
+  //units: string = 'metric'
+  units: string = 'metric'; // 'metric' para Celsius, 'imperial' para Fahrenheit
+
+  constructor(private weatherService: WeatherService,private modalCtrl: ModalController, private router: Router) {}
+
+  ngOnInit(): void{
+    this.getWeather();
+  }
+
+  
+  getWeather() {
+    this.weatherService.getweather(this.city, this.units).subscribe({
+      next: (res) => {
+       this.myWeather = res;
+       this.temperature = this.myWeather.main.temp;
+       this.feelsLikeTemp = this.myWeather.main.feels_like;
+       this.humidity = this.myWeather.main.humidity;
+       this.pressure = this.myWeather.main.pressure;
+       this.summary = this.myWeather.weather[0].main;
+       this.iconURL = `http://openweathermap.org/img/wn/${this.myWeather.weather[0].icon}.png`;
+      },
+      error: (error) => console.log(error.message),
+
+      complete: () => console.info('API call completed')
+    })
+
+  }
+  onRadioButtonChange() {
+    if (this.units == 'metric') {
+      this.units = 'imperial';
+    } else {
+      this.units = 'metric';
+    }
+
+    this.getWeather();
+  }
 
 async openDetails(index: number) {
   const modal = await this.modalCtrl.create({

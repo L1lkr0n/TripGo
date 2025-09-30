@@ -1,5 +1,20 @@
 <ion-content class="ion-padding bg-dark text-light" [fullscreen]="true">
   <!-- Grid de cards usando Ionic + Bootstrap -->
+  <div class="my-container">
+    <div class="card text-white bg-primary mb-5" style="max-width: 18rem;">
+      <div class="card-header text-center">
+        <h2>Santiago</h2>
+        <p>Imagen del clima</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Resumen: {{summary}}</p>
+        <p class="card-text">Temperatura: {{temperature}}°C</p>
+        <p class="card-text">Sensación Térmica: {{feelsLikeTemp}}°C</p>
+        <p class="card-text">Presion: {{pressure}} hPa</p>
+        <p class="card-text">Humedad: {{humidity}}%</p>
+      </div>
+    </div>
+  </div>
   <ion-grid>
     <ion-row class="g-3 justify-content-center">
       <ion-col
