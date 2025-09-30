@@ -15,39 +15,4 @@
       </div>
     </div>
   </div>
-  <ion-grid>
-    <ion-row class="g-3 justify-content-center">
-      <ion-col size="12" size-sm="6" size-md="4" *ngFor="let item of itinerary; let i = index">
-        <ion-card>
-          <!-- Botones editar/eliminar solo si hay más de un card -->
-          <div
-            *ngIf="itinerary.length > 1 && (item.title.trim() !== '' || item.time.trim() !== '' || item.description.trim() !== '')"
-            class="position-absolute top-0 end-0 m-2 d-flex gap-1">
-            <!-- Botón editar -->
-            <ion-button fill="solid" color="primary" size="small" (click)="openDetails(i)">
-              <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
-            </ion-button>
-            <!-- Botón eliminar -->
-            <ion-button fill="solid" color="danger" size="small" (click)="deleteCard(i)">
-              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-            </ion-button>
-          </div>
-
-          <!-- Contenido centrado -->
-          <div class="d-flex flex-column justify-content-center align-items-center w-100">
-            <ion-input placeholder="Escribe un lugar..." [(ngModel)]="item.title"
-              class="text-light bg-transparent border-secondary text-center mb-3" (click)="openDetails(i)">
-            </ion-input>
-          </div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <!-- Botón flotante esquina inferior derecha -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="hasFilledCard()">
-    <ion-fab-button color="success" (click)="goToNextTab()" style="width: 60px; height: 60px; font-size: 24px">
-      <ion-icon name="arrow-forward-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>
