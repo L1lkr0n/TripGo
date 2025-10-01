@@ -1,53 +1,61 @@
-/* Sombra y hover sobre cada card */
+/* Contenedor principal */
 .my-container {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
-}
-p {
-    margin: 5px;
-}
-.card {
-  border-radius: 10%;
-  background-color: #007bff; 
-  box-shadow: (offset-x) (offset-y) (blur-radius) (spread-radius) (color);
-  box-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.1),  // Sombra suave para la elevación
-    0 8px 15px rgba(0, 0, 0, 0.15); // Sombra más grande y definida para el "borde"
-}
-.myRadioButtons {
-    display: flex;
-    justify-content: space-around;
-}
-ion-card {
-  transition: transform 0.2s, box-shadow 0.2s;
-  background-color: rgb(255, 255, 255);
-  border-style: solid ;
-  border-width: 1px;
-  border-color: rgba(0, 0, 0, 0.1);
-}
-ion-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  height: 100vh; /* ocupa toda la altura de la pantalla */
 }
 
-/* Mantener background semitransparente */
-ion-card.bg-dark {
+/* Pequeño margen en los párrafos dentro de las cards */
+.weather-card p {
+  margin: 5px;
+}
+
+/* Estilos de la card específica de clima */
+.weather-card {
+  max-width: 20rem;
+  border-radius: 10%;
+  background-color: #007bff; /* color primario inicial */
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 8px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover sobre la card */
+.weather-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Header centrado y texto claro */
+.weather-card .card-header {
+  text-align: center;
+  color: #fff;
+}
+
+/* Mantener fondo semitransparente si se usa modo oscuro */
+.weather-card.bg-dark {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Placeholder color */
-ion-input::part(native)::-webkit-input-placeholder {
+/* Opcional: Radio buttons si los hay dentro de esta card */
+.weather-card .myRadioButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Placeholder en inputs dentro de esta card */
+.weather-card ion-input::part(native)::-webkit-input-placeholder {
   color: #888888;
   opacity: 1;
 }
-ion-input::part(native):-ms-input-placeholder {
+.weather-card ion-input::part(native):-ms-input-placeholder {
   color: #888888;
   opacity: 1;
 }
-ion-input::part(native)::placeholder {
+.weather-card ion-input::part(native)::placeholder {
   color: #888888;
   opacity: 1;
 }

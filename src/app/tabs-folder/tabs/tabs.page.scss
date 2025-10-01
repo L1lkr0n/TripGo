@@ -1,27 +1,28 @@
-/* Tab Bar general */
+/* Contenedor del Tab Bar */
 .modern-tab-bar {
-  background-color: #ffffff;
+  background-color: var(--tab-bar-bg, #ffffff);
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
   margin: 0 10px;
-  height: 75px; /* altura suficiente para icono + label */
+  height: 75px;
+  border-radius: 15px;
 }
 
 /* Cada tab */
 .modern-tab {
   flex: 1;
-  color: black;
-  transition: transform 0.2s, color 0.2s;
+  color: var(--tab-color, #000000);
+  transition: transform 0.2s, color 0.2s, background 0.2s;
   border-radius: 15px;
   padding: 5px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem; /* tamaño de label ajustado */
+  font-size: 0.85rem;
 }
 
 .modern-tab ion-icon {
-  font-size: 1.5rem; /* iconos grandes */
+  font-size: 1.5rem;
   margin-bottom: 2px;
   display: block;
 }
@@ -29,7 +30,25 @@
 /* Tab seleccionado */
 ion-tab-button.tab-selected.modern-tab {
   transform: translateY(-3px) scale(1.05);
-  color: #000000 !important; /* dorado */
-  background: rgba(255,255,255,0.1);
+  color: var(--tab-selected-color, #000000);
+  background: var(--tab-selected-bg, rgba(0,0,0,0.1));
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* ===== Temas ===== */
+
+/* Modo claro */
+.light-theme {
+  --tab-bar-bg: #ffffff;
+  --tab-color: #000000;
+  --tab-selected-color: #ffb400; /* dorado */
+  --tab-selected-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Modo oscuro */
+.dark-theme {
+  --tab-bar-bg: #222222;
+  --tab-color: #ffffff;
+  --tab-selected-color: #ffd700; /* dorado más visible */
+  --tab-selected-bg: rgba(255, 255, 255, 0.1);
 }
