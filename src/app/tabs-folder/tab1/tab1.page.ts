@@ -12,7 +12,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class Tab1Page implements OnInit {
   myWeather: any;
   temperature: number = 0;
-  feelsLikeTemp: number = 0;
   humidity: number = 0;
   pressure: number = 0;
   summary: string = '';
@@ -38,7 +37,6 @@ export class Tab1Page implements OnInit {
         this.iconURL = this.sanitizer.bypassSecurityTrustUrl(rawUrl);
         this.myWeather = res;
         this.temperature = this.myWeather.main.temp;
-        this.feelsLikeTemp = this.myWeather.main.feels_like;
         this.humidity = this.myWeather.main.humidity;
         this.pressure = this.myWeather.main.pressure;
         this.summary = this.myWeather.weather[0].main;
