@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared-module';
+import { SHARED_IMPORTS } from 'src/app/shared/shared-module';
 import { WeatherService } from 'src/app/weather.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
+  standalone: true,
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [SharedModule],
+  imports: [SHARED_IMPORTS],
 })
 export class Tab1Page implements OnInit {
   myWeather: any;
