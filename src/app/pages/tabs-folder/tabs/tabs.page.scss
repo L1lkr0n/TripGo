@@ -40,7 +40,7 @@ ion-tab-button.tab-selected.modern-tab {
 .light-theme {
   --tab-bar-bg: #ffffff;
   --tab-color: #000000;
-  --tab-selected-color: #ffb400; /* dorado */
+  --tab-selected-color: #0252ff; /* dorado */
   --tab-selected-bg: rgba(255, 255, 255, 0.1);
 }
 
@@ -48,6 +48,6 @@ ion-tab-button.tab-selected.modern-tab {
 .dark-theme {
   --tab-bar-bg: #222222;
   --tab-color: #ffffff;
-  --tab-selected-color: #ffd700; /* dorado más visible */
+  --tab-selected-color: #0252ff; /* dorado más visible */
   --tab-selected-bg: rgba(255, 255, 255, 0.1);
 }
