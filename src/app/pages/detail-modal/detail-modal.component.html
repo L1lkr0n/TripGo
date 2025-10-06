@@ -8,11 +8,14 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <!-- Nuevo campo destino -->
+  <!-- Nuevo campo destino con referencia -->
   <ion-item>
     <ion-label position="stacked">Destino</ion-label>
-    <ion-input [(ngModel)]="item.title" placeholder="Escribe el destino..."></ion-input>
+    <ion-input
+      #destinationInput
+      [(ngModel)]="item.title"
+      placeholder="Escribe el destino..."
+    ></ion-input>
   </ion-item>
 
   <ion-item>
@@ -31,9 +34,11 @@
 
   <ion-item>
     <ion-label position="stacked">Notas</ion-label>
-    <ion-textarea [(ngModel)]="item.description" placeholder="Detalles o recordatorios"></ion-textarea>
+    <ion-textarea
+      [(ngModel)]="item.description"
+      placeholder="Detalles o recordatorios"
+    ></ion-textarea>
   </ion-item>
 
   <ion-button expand="block" (click)="save()">Guardar</ion-button>
-
 </ion-content>
