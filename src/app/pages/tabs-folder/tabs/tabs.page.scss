@@ -1,4 +1,9 @@
 /* Contenedor del Tab Bar */
+
+ion-tab-bar {
+  z-index: 99999 !important; /* Forzar que esté al frente de cualquier cosa */
+}
+
 .modern-tab-bar {
   background-color: var(--tab-bar-bg, #ffffff);
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
