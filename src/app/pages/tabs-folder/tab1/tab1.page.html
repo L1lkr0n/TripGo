@@ -3,18 +3,17 @@
   <div class="my-container">
     <div class="card weather-card text-light bg-primary mb-5">
       <div class="card-header text-center">
+        <!-- Nombre de la ciudad -->
         <h2>{{ city }}</h2>
-        
         <!-- Spinner mientras carga la imagen -->
         <ng-container *ngIf="iconURL; else loading">
           <img [src]="iconURL" alt="image">
         </ng-container>
-
         <ng-template #loading>
           <ion-spinner name="crescent"></ion-spinner>
         </ng-template>
       </div>
-
+      <!-- Detalles del clima -->
       <div class="card-body">
         <p class="card-text">Resumen: {{ summary }}</p>
         <p class="card-text">Temperatura: {{ temperature }} °C</p>
