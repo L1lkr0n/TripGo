@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { SHARED_IMPORTS } from 'src/app/shared/shared-module';
 import { addIcons } from 'ionicons';
 import { trashOutline } from 'ionicons/icons';
-import { ModalController } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { DetailModalComponent } from '../detail-modal/detail-modal.component';
 import { ItineraryItem } from './itinerary-item.interface';
 import { environment } from 'src/environments/environment';
+import { MatButtonModule } from '@angular/material/button';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 // Registrar iconos
@@ -18,7 +21,11 @@ addIcons({
   selector: 'app-flujo-itinerario',
   templateUrl: './flujo-itinerario.component.html',
   styleUrls: ['./flujo-itinerario.component.scss'],
-  imports: [...SHARED_IMPORTS],
+  imports: [CommonModule,
+  FormsModule,
+  IonicModule,    
+  MatStepperModule, 
+  MatButtonModule],
 })
 export class FlujoItinerarioComponent implements OnInit {
   itinerary: ItineraryItem[] = [

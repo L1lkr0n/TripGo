@@ -1,10 +1,13 @@
 import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { triangle, ellipse, square } from 'ionicons/icons';
-import { SHARED_IMPORTS } from 'src/app/shared/shared-module';
 
 // Importar los iconos específicos
 import { homeOutline,personOutline,addCircleOutline } from 'ionicons/icons';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
 
 // Registrar iconos
 addIcons({
@@ -18,7 +21,7 @@ addIcons({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [SHARED_IMPORTS],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
 })
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);

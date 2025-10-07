@@ -28,7 +28,6 @@
                       item.description.trim())
                   "
                   class="position-absolute top-0 end-0 m-2 d-flex gap-1"
-                  style="z-index: 10"
                 >
                   <ion-button
                     fill="solid"
@@ -49,7 +48,7 @@
                     [(ngModel)]="item.title"
                     [ngModelOptions]="{ standalone: true }"
                     (click)="openDetails(i)"
-                    class="text-light bg-transparent border-secondary text-center mb-3"
+                    class="bg-transparent border-secondary text-center mb-3"
                   >
                   </ion-input>
                 </div>
@@ -82,10 +81,12 @@
           <h3>Rutas optimizadas simuladas:</h3>
           <ion-list>
             <ion-item *ngFor="let item of optimizedItinerary">
-              {{ item.routeOrder }}. {{ item.title }} - {{ item.time }} ({{
-                item.estimatedTravelTime
-              }}
-              min)
+              <ion-label>
+                {{ item.routeOrder }}. {{ item.title }} - {{ item.time }} ({{
+                  item.estimatedTravelTime
+                }}
+                min)
+              </ion-label>
             </ion-item>
           </ion-list>
         </div>

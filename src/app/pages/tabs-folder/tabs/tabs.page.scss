@@ -1,15 +1,17 @@
-/* Contenedor del Tab Bar */
+/* ===== Modo claro por defecto ===== */
 .modern-tab-bar {
   background-color: var(--tab-bar-bg, #ffffff);
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
-  margin: 0px;
+  margin: 0;
   height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* Cada tab */
 .modern-tab {
   flex: 1;
-  color: var(--tab-color, #000000);
+  color: #000000; /* letras negras */
   transition: transform 0.2s, color 0.2s, background 0.2s;
   border-radius: 15px;
   padding: 5px 0;
@@ -26,28 +28,27 @@
   display: block;
 }
 
-/* Tab seleccionado */
 ion-tab-button.tab-selected.modern-tab {
   transform: translateY(-3px) scale(1.05);
-  color: var(--tab-selected-color, #000000);
-  background: var(--tab-selected-bg, rgba(0,0,0,0.1));
+  color: #000000; /* letra negra */
+  background: rgba(0,0,0,0.1); /* efecto grisaceo */
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* ===== Temas ===== */
+/* ===== Modo oscuro ===== */
+@media (prefers-color-scheme: dark) {
+  .modern-tab-bar {
+    background-color: #1e1e1e;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.7);
+  }
 
-/* Modo claro */
-.light-theme {
-  --tab-bar-bg: #ffffff;
-  --tab-color: #000000;
-  --tab-selected-color: #ffb400; /* dorado */
-  --tab-selected-bg: rgba(255, 255, 255, 0.1);
-}
+  .modern-tab {
+    color: #ffffff; /* letras blancas en modo oscuro */
+  }
 
-/* Modo oscuro */
-.dark-theme {
-  --tab-bar-bg: #222222;
-  --tab-color: #ffffff;
-  --tab-selected-color: #ffd700; /* dorado más visible */
-  --tab-selected-bg: rgba(255, 255, 255, 0.1);
+  ion-tab-button.tab-selected.modern-tab {
+    color: #ffffff; /* letra blanca seleccionada */
+    background: rgba(255,255,255,0.15); /* efecto blanqueado */
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2); /* sombra blanca tenue */
+  }
 }

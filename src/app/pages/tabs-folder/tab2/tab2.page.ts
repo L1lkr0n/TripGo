@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { SHARED_IMPORTS } from 'src/app/shared/shared-module';
 import { addIcons } from 'ionicons';
 import {  } from 'ionicons/icons';
-import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 // Registrar iconos
 addIcons({
 
@@ -13,7 +14,7 @@ addIcons({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
-  imports: [SHARED_IMPORTS],
+  imports: [CommonModule, FormsModule, IonicModule],
 })
 export class Tab2Page {
   constructor(private router : Router) {}

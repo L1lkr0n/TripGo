@@ -2,21 +2,21 @@ import {
   Component,
   Input,
   AfterViewInit,
-  ElementRef,
   ViewChild,
 } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { SHARED_IMPORTS } from '../../shared/shared-module';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { ItineraryItem } from '../flujo-itinerario/itinerary-item.interface';
 import { environment } from 'src/environments/environment';
 import { IonInput } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-detail-modal',
   templateUrl: './detail-modal.component.html',
   styleUrls: ['./detail-modal.component.scss'],
-  imports: [...SHARED_IMPORTS],
+  imports: [CommonModule, FormsModule, IonicModule],
 })
 export class DetailModalComponent implements AfterViewInit {
   @Input() item!: ItineraryItem;

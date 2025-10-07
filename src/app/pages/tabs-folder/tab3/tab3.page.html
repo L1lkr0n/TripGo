@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Tab 3</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,5 +7,10 @@
 <ion-content [fullscreen]="true">
   <div class="ion-padding">
     Aquí va tu contenido visible
+
+    <!-- Botón clásico de Ionic -->
+    <ion-button expand="block" color="secondary" (click)="onButtonClick()">
+      Presionar
+    </ion-button>
   </div>
 </ion-content>

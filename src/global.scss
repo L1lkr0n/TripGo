@@ -71,8 +71,12 @@ body {
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
-body, ion-app, ion-content, h1, h2, h3, h4, h5, h6, p, span, button, .btn {
+html, body, ion-app, ion-content {
   font-family: 'Montserrat', sans-serif !important;
+  height: 100%;
+  margin: 0;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ion-tab-bar {
+  z-index: 50;
+}
