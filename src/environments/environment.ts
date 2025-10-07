@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   weatherApiKey: 'fdb9df792e8c62ebc883503d40ad6f0a',
   googleMapsApiKey: 'AIzaSyCSNqxUEubqV9phKESFxlZdMISmgmuP1xw',
+  projectNumber: "274317341753", 
+  version: "2"
 };
 
 

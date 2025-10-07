@@ -14,6 +14,16 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    provideHttpClient(), provideFirebaseApp(() => initializeApp({ projectId: "tripgo-473722", appId: "1:274317341753:web:df2db939821dca824ec9e8", storageBucket: "tripgo-473722.firebasestorage.app", apiKey: "AIzaSyA7Fen_mTkdzDY7spPh0Kp-uU4Hn7INNrY", authDomain: "tripgo-473722.firebaseapp.com", messagingSenderId: "274317341753", measurementId: "G-RBPQ0N0PXF", projectNumber: "274317341753", version: "2" })), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideVertexAI(() => getVertexAI())
+    provideHttpClient(), 
+    provideFirebaseApp(() => initializeApp({ 
+      projectId: "tripgo-473722", 
+      appId: "1:274317341753:web:df2db939821dca824ec9e8", 
+      storageBucket: "tripgo-473722.firebasestorage.app", 
+      apiKey: "AIzaSyA7Fen_mTkdzDY7spPh0Kp-uU4Hn7INNrY", 
+      authDomain: "tripgo-473722.firebaseapp.com", 
+      messagingSenderId: "274317341753", 
+      measurementId: "G-RBPQ0N0PXF", 
+       })), 
+      provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideVertexAI(() => getVertexAI())
   ],
 });
