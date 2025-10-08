@@ -6,8 +6,16 @@ export const environment = {
   production: false,
   weatherApiKey: 'fdb9df792e8c62ebc883503d40ad6f0a',
   googleMapsApiKey: 'AIzaSyCSNqxUEubqV9phKESFxlZdMISmgmuP1xw',
-  projectNumber: "274317341753", 
-  version: "2"
+  firebaseConfig: {
+    apiKey: "AIzaSyA7Fen_mTkdzDY7spPh0Kp-uU4Hn7INNrY",
+    authDomain: "tripgo-473722.firebaseapp.com",
+    projectId: "tripgo-473722",
+    storageBucket: "tripgo-473722.firebasestorage.app",
+    messagingSenderId: "274317341753",
+    appId: "1:274317341753:web:df2db939821dca824ec9e8"
+  }
+  //projectNumber: "274317341753", 
+  //version: "2"
 };
 
 
