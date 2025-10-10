@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { FirestoreService } from '../../services/firestore';
 
 // Registrar iconos
 addIcons({
@@ -45,7 +45,7 @@ export class FlujoItinerarioComponent implements OnInit {
 
   map: any; // Para guardar instancia de Google Map
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, private firestoreService: FirestoreService) {}
 
   ngOnInit(): void {
     this.ensureEmptyCard();
@@ -186,12 +186,26 @@ export class FlujoItinerarioComponent implements OnInit {
 
   // -------- STEP 3: GUARDAR ITINERARIO ----------
   guardarItinerario() {
-    const finalItinerary = this.optimizedItinerary.length
-      ? this.optimizedItinerary
-      : this.itinerary;
+  const finalItinerary = this.optimizedItinerary.length
+    ? this.optimizedItinerary
+    : this.itinerary;
 
-    console.log('Itinerario guardado:', finalItinerary);
-    alert('Itinerario guardado!');
-    // Aquí iría la lógica real de Firestore / backend
-  }
+  const sanitizedItems = finalItinerary.map(item => ({
+    ...item,
+    lat: item.lat ?? 0,
+    lng: item.lng ?? 0,
+  }));
+
+  this.firestoreService.addItinerary({ 
+    createdAt: new Date(),
+    items: sanitizedItems
+  })
+  .then(() => alert('Itinerario guardado en Firestore!'))
+  .catch((err) => {
+    console.error('Error guardando itinerario:', err);
+    alert('Error guardando itinerario. Revisa la consola.');
+  });
+}
+
+
 }
