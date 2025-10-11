@@ -4,19 +4,23 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getVertexAI, provideVertexAI } from '@angular/fire/vertexai';
+
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from './environments/environment';
-// Importe de firebase 
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+
+    // Ionic provider
     provideIonicAngular(),
+
+    // Firebase y Firestore se agregan directamente
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    provideHttpClient(), 
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
-    provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideVertexAI(() => getVertexAI())
+    provideHttpClient()
   ],
 });
