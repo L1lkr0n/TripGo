@@ -12,6 +12,28 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+
+  },
+  {
+  path: 'login',
+  loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage) // Usar loadComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  /*
+  {
+    //ruta prinncipal
+    path: '',
+    loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then((m) => m.routes),
+  },
+  /*
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
     path: 'login',
