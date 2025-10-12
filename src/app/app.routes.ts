@@ -2,26 +2,16 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
 
 export const routes: Routes = [
-  {
-    //ruta prinncipal
-    path: '',
-    loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then((m) => m.routes),
-  },
-  /*
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
 
-  },
   {
-  path: 'login',
-  loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage) // Usar loadComponent
+    //ruta prinncipal
+    path: '',
+    loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then((m) => m.routes),
   },
+  /*
   {
-    path: '**',
-    redirectTo: 'login',
-    pathMatch: 'full'
+       path: 'login',
+       loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage), // Lazy loading para standalone
   },
   /*
   {
@@ -30,11 +20,6 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then((m) => m.routes),
   },
   /*
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
   {
     path: 'login',
     loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
@@ -43,10 +28,6 @@ export const routes: Routes = [
     path: 'tabs',
     loadComponent: () => import('./pages/tabs/tabs.page').then(m => m.TabsPage),
     canActivate: [AuthGuard] // 🔒 Protegemos las tabs
-  },
-  {
-    path: '**',
-    redirectTo: 'login'
   },
   */
   {
