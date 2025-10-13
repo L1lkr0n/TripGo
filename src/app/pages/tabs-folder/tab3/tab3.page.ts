@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
@@ -10,7 +9,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-  imports: [IonicModule, CommonModule,IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
+  imports: [CommonModule, IonicModule],
 })
 export class Tab3Page {
   
