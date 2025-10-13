@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <br>
   <ion-list>
-    <form >
+    <form (ngSubmit)="onLogin()">
     
       <ion-list >
              
@@ -12,14 +12,27 @@
         </ion-label>
         
         <ion-item >    
-          <ion-input  class="form-login"  name="correo" label="Correo" placeholder="Correo" ></ion-input>
+          <ion-input  class="form-login"  
+          [(ngModel)]="email"
+          name="email"
+          label="Correo"
+          placeholder="Correo"
+          type="email"
+          required ></ion-input>
         </ion-item>
             
         <ion-item>      
-          <ion-input class="form-login" name="password"  label="Contraseña" type="password" placeholder="Ingresa tu contraseña"></ion-input>
+          <ion-input class="form-login" 
+          [(ngModel)]="password" 
+          name="password" 
+          label="Contraseña" 
+          type="password" 
+          placeholder="Ingresa tu contraseña" 
+          type="password"
+          required></ion-input>
         </ion-item>
 
-        <ion-button fill="outline" color="danger" type="submit" >Ingresar</ion-button>
+        <ion-button fill="outline" expand="block" color="danger" type="submit" >Ingresar</ion-button>
           
       </ion-list>
       
@@ -31,8 +44,14 @@
         </ion-col>
       </ion-row>
     
-    <ion-button expand="block" color="success" >Regístrate aqui</ion-button><br>
-    <ion-button expand="block" color="dark" >Recuperar contraseña</ion-button>
+    <ion-button expand="block" color="success" >
+      Regístrate aqui
+    </ion-button>
+    <br>
+    <ion-button expand="block" color="dark" >
+      Recuperar contraseña
+    </ion-button>
+    
   </ion-list>
 
 </ion-content>

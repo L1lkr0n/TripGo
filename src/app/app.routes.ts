@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  
   {
     //ruta prinncipal
     path: '',
@@ -27,6 +26,6 @@ export const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then(m => m.routes)
-  },
+  }
   */
 ];
