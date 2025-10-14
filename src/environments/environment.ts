@@ -10,9 +10,9 @@ export const environment = {
   apiKey: "AIzaSyA7Fen_mTkdzDY7spPh0Kp-uU4Hn7INNrY",
   authDomain: "tripgo-473722.firebaseapp.com",
   projectId: "tripgo-473722",
-  storageBucket: "tripgo-473722.appspot.com",
+  storageBucket: "tripgo-473722.firebasestorage.app",
   messagingSenderId: "274317341753",
-  appId: "1:274317341753:web:f419f2735f1e0d4d4ec9e8"
+  appId: "1:274317341753:android:56da671d1593231e4ec9e8"
 }
 };
 

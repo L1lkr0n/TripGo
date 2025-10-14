@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-
+import { LoginPage } from './pages/login/login.page';
 export const routes: Routes = [
-  {
+   {
     //ruta prinncipal
     path: '',
     loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then((m) => m.routes),
@@ -11,7 +11,7 @@ export const routes: Routes = [
     path: 'flujo-itinerario',
       loadComponent: () => import('./pages/flujo-itinerario/flujo-itinerario.component')
       .then(m => m.FlujoItinerarioComponent)
-  },
+  }
   /*
   {
     path: '',
@@ -20,12 +20,11 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () =>
-      import('./pages/login/login.page').then(m => m.LoginPage)
+    component: LoginPage
   },
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then(m => m.routes)
-  }
+  },
   */
 ];
