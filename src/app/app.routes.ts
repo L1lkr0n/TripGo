@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginPage } from './pages/login/login.page';
 export const routes: Routes = [
-  
+
   {
     //ruta prinncipal
     path: '',
@@ -14,6 +14,7 @@ export const routes: Routes = [
       .then(m => m.FlujoItinerarioComponent)
   }
   /*
+  
   {
     path: '',
     redirectTo: 'login',

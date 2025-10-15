@@ -4,8 +4,8 @@ import { IonContent,IonList,
   IonInput,
   IonButton,
   IonRow,
-  IonCol,
-  IonLabel} from '@ionic/angular/standalone';
+  IonCol
+} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -21,8 +21,7 @@ import { AuthService } from 'src/app/auth.service';
   IonInput,
   IonButton,
   IonRow,
-  IonCol,
-  IonLabel],
+  IonCol],
 })
 export class LoginPage {
   
