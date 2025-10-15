@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "274317341753",
+    "project_id": "tripgo-473722",
+    "storage_bucket": "tripgo-473722.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274317341753:android:56da671d1593231e4ec9e8",
+        "android_client_info": {
+          "package_name": "Trip.Go"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1P1KxQvhG9Ab1a1147DKC1fR55vRdpNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

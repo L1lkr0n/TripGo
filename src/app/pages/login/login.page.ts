@@ -34,8 +34,9 @@ export class LoginPage {
 
   async onLogin() {
     if (!this.email || !this.password) {
+      console.log('Intentando login con:', this.email);
       alert('Por favor complete ambos campos.');
-      return;
+      return;    
     }
 
     this.loading = true;
@@ -43,8 +44,9 @@ export class LoginPage {
       await this.auth.login(this.email.trim(), this.password);
       this.router.navigateByUrl('/tabs', { replaceUrl: true });
     } catch (error: any) {
-      console.error(error);
-      alert(this.getFirebaseError(error.code));
+      console.error('🔥 ERROR DETALLADO FIREBASE:', error); // <-- Agregar esto
+      alert(`Código de error: ${error.code || 'sin código'} - Mensaje: ${error.message}`);
+      this.loading = false;
     } finally {
       this.loading = false;
     }
