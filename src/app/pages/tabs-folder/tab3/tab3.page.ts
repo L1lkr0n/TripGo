@@ -16,13 +16,6 @@ export class Tab3Page {
   user: any;
 
   constructor(private auth: AuthService, private router: Router) {
-    this.user = this.auth.getUser();
-  }
-
-  logout() {
-    this.auth.logout().then(() => {
-      this.router.navigateByUrl('/login', { replaceUrl: true });
-    });
   }
 
   onButtonClick() {
