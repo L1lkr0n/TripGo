@@ -1,23 +1,55 @@
-
-.tituloSesion{
-    margin-left: 70px;
+.titulo{
+  font-family: 'Oswald', sans-serif; // Requiere importar Oswald en index.html
+  font-weight: 700; 
+  font-size: 38px; 
+  text-transform: uppercase;
+  color: #4d5571; /* Color similar al de la imagen */
+  margin-left: 5%;
+  margin-top: 10%;
+  transform: scaleY(1.5);
 }
-.subtituloSesion{
-    margin-left: 80px;
+.form-login{
+    margin: 0 auto;
+    // Color del texto (las letras)
+  --border-radius: 20px;
+}
+.label{
+    margin-left: 5%;
+    font-size: 8px;
+    transform: scaleY(1.5);
+    font-family: 'Oswald', sans-serif;
 }
 .flex{
-    margin-left:25%;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
 }
+.olvido{
+    display: flex;
+    justify-content: center;
+    color: rgb(66, 133, 244);
+}
+.registrarse{
+    margin: 0 auto;
+    font-size: small;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    color: rgb(66, 133, 244);
+}
+.iniciar-sesion{
+    margin: 0 auto;
+    width: 90%;
+    --border-radius: 10px;
+    // Color del texto (las letras)
+  --color: white; 
+  
+  // Color de fondo del botón (el que quieres que se vea)
+  --background: rgb(66, 133, 244); // Tu color naranja/ámbar
+  
+  // Color de fondo al hacer click o mantener presionado
+  --background-activated: darken(rgb(66, 133, 244), 10%); // Oscurecer un poco el color
 
-.container-error-message {
-    padding: 3px;
-    
-}
-
-.alert-danger{
-    color: red;
-    
-}
-.text-danger{
-    color: red;
+  // Quita el borde (si no quieres el borde azul por defecto)
+  --border-style: none;
 }
