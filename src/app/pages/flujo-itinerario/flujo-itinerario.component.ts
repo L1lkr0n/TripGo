@@ -21,11 +21,13 @@ addIcons({
   selector: 'app-flujo-itinerario',
   templateUrl: './flujo-itinerario.component.html',
   styleUrls: ['./flujo-itinerario.component.scss'],
-  imports: [CommonModule,
-  FormsModule,
-  IonicModule,    
-  MatStepperModule, 
-  MatButtonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    MatStepperModule,
+    MatButtonModule,
+  ],
 })
 export class FlujoItinerarioComponent implements OnInit {
   itinerary: ItineraryItem[] = [
@@ -42,10 +44,13 @@ export class FlujoItinerarioComponent implements OnInit {
   ];
 
   optimizedItinerary: ItineraryItem[] = [];
+  isGenerating = false; // Flag spinner/bloqueo botón
+  map: any;
 
-  map: any; // Para guardar instancia de Google Map
-
-  constructor(private modalCtrl: ModalController, private firestoreService: FirestoreService) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private firestoreService: FirestoreService
+  ) {}
 
   ngOnInit(): void {
     this.ensureEmptyCard();
@@ -97,115 +102,161 @@ export class FlujoItinerarioComponent implements OnInit {
   }
 
   private loadGoogleMapsScript(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if ((window as any).google) {
-      resolve();
-      return;
-    }
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => resolve();
-    script.onerror = (err) => reject(err);
-    document.body.appendChild(script);
-  });
-}
-
-
-  // -------- STEP 2: GENERAR RUTA OPTIMIZADA SIMULADA ----------
- async generateOptimizedRoute() {
-  await this.loadGoogleMapsScript();
-
-  // Ruta de prueba real
-  this.optimizedItinerary = [
-    { title: 'Plaza de Armas', time: '10:00', description: '', transport: 'Caminando', lat: -33.4378, lng: -70.6505, routeOrder: 1, estimatedTravelTime: 0 },
-    { title: 'Cerro Santa Lucía', time: '10:30', description: '', transport: 'Caminando', lat: -33.4370, lng: -70.6483, routeOrder: 2, estimatedTravelTime: 15 },
-    { title: 'Museo Precolombino', time: '11:00', description: '', transport: 'Caminando', lat: -33.4375, lng: -70.6512, routeOrder: 3, estimatedTravelTime: 20 },
-  ];
-
-  console.log('Ruta optimizada de prueba:', this.optimizedItinerary);
-  alert('Ruta de prueba generada. Revisa el mapa en Step 3.');
-
-  this.loadMap(); // Mostrar la ruta
-}
-
-
-  // -------- STEP 3: MAPA ----------
- private loadMap() {
-  if (!(window as any).google || !this.optimizedItinerary.length) return;
-
-  const google = (window as any).google;
-  const first = this.optimizedItinerary[0];
-  const last = this.optimizedItinerary[this.optimizedItinerary.length - 1];
-
-  // Crear mapa
-  if (!this.map) {
-    this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-      center: { lat: first.lat, lng: first.lng },
-      zoom: 15,
+    return new Promise((resolve, reject) => {
+      if ((window as any).google) {
+        resolve();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = (err) => reject(err);
+      document.body.appendChild(script);
     });
-  } else {
-    this.map.setCenter({ lat: first.lat, lng: first.lng });
   }
 
-  // Dibujar marcadores
-  this.optimizedItinerary.forEach((item) => {
-    new google.maps.Marker({
-      position: { lat: item.lat!, lng: item.lng! },
-      map: this.map,
-      title: item.title,
+  private async geocodeAddress(address: string): Promise<{ lat: number; lng: number }> {
+  const google = (window as any).google;
+  return new Promise((resolve, reject) => {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address }, (results: any, status: string) => {
+      if (status === "OK" && results[0]) {
+        resolve({
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        });
+      } else {
+        console.error("Error geocoding:", address, status);
+        resolve({ lat: 0, lng: 0 }); // fallback
+      }
     });
   });
+}
 
-  // Dibujar línea entre los puntos
-  const directionsService = new google.maps.DirectionsService();
-  const directionsRenderer = new google.maps.DirectionsRenderer({ map: this.map });
 
-  const waypoints = this.optimizedItinerary.slice(1, -1).map(item => ({
-    location: { lat: item.lat, lng: item.lng },
-    stopover: true,
-  }));
+  // -------------------- STEP 2: Gemini --------------------
+// -------------------- STEP 2: Gemini --------------------
+async generateOptimizedRoute() {
+  if (!this.hasFilledCard()) {
+    alert('Agrega al menos un lugar antes de optimizar la ruta.');
+    return;
+  }
 
-  directionsService.route(
-    {
-      origin: { lat: first.lat, lng: first.lng },
-      destination: { lat: last.lat, lng: last.lng },
-      waypoints,
-      travelMode: google.maps.TravelMode.WALKING,
-    },
-    (response: any, status: string) => {
-      if (status === 'OK') {
-        directionsRenderer.setDirections(response);
-      } else {
-        console.error('Error en la ruta:', status);
-      }
+  this.isGenerating = true;
+
+  try {
+    // Preparamos el itinerario indicando transporte solo si el usuario no lo puso
+    const itineraryForBackend = this.itinerary.map(item => ({
+      ...item,
+      transport: item.transport || null, // null si el usuario no seleccionó
+    }));
+
+    const res = await fetch('http://localhost:3000/optimize-itinerary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ itinerary: itineraryForBackend }),
+    });
+
+    const data = await res.json();
+
+    // Fusionamos optimización con lat/lng y transporte ya existente
+    this.optimizedItinerary = data.map((item: any, i: number) => ({
+      ...item,
+      lat: this.itinerary[i].lat ?? 0,
+      lng: this.itinerary[i].lng ?? 0,
+      transport: this.itinerary[i].transport || item.transport, // Respeta transporte usuario
+    }));
+
+    console.log("Step 2 - Optimized Itinerary:", this.optimizedItinerary);
+    this.loadMap(); // Renderiza Step 3
+  } catch (err) {
+    console.error('Error generando ruta optimizada:', err);
+    alert('Error generando ruta optimizada. Revisa la consola.');
+  } finally {
+    this.isGenerating = false;
+  }
+}
+
+
+
+
+  // -------------------- STEP 3: Google Maps --------------------
+  private loadMap() {
+    if (!(window as any).google || !this.optimizedItinerary.length) return;
+
+    const google = (window as any).google;
+    const first = this.optimizedItinerary[0];
+    const last = this.optimizedItinerary[this.optimizedItinerary.length - 1];
+
+    if (!this.map) {
+      this.map = new google.maps.Map(
+        document.getElementById('map') as HTMLElement,
+        {
+          center: { lat: first.lat, lng: first.lng },
+          zoom: 15,
+        }
+      );
+    } else {
+      this.map.setCenter({ lat: first.lat, lng: first.lng });
     }
-  );
-}
 
-  // -------- STEP 3: GUARDAR ITINERARIO ----------
+    // Marcadores
+    this.optimizedItinerary.forEach((item) => {
+      new google.maps.Marker({
+        position: { lat: item.lat!, lng: item.lng! },
+        map: this.map,
+        title: item.title,
+      });
+    });
+
+    // Ruta
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+      map: this.map,
+    });
+
+    const waypoints = this.optimizedItinerary.slice(1, -1).map((item) => ({
+      location: { lat: item.lat, lng: item.lng },
+      stopover: true,
+    }));
+
+    directionsService.route(
+      {
+        origin: { lat: first.lat, lng: first.lng },
+        destination: { lat: last.lat, lng: last.lng },
+        waypoints,
+        travelMode: google.maps.TravelMode.WALKING,
+      },
+      (response: any, status: string) => {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else {
+          console.error('Error en la ruta:', status);
+        }
+      }
+    );
+  }
+
+  // -------------------- STEP 3: Guardar en Firestore --------------------
   guardarItinerario() {
-  const finalItinerary = this.optimizedItinerary.length
-    ? this.optimizedItinerary
-    : this.itinerary;
+    const finalItinerary = this.optimizedItinerary.length
+      ? this.optimizedItinerary
+      : this.itinerary;
 
-  const sanitizedItems = finalItinerary.map(item => ({
-    ...item,
-    lat: item.lat ?? 0,
-    lng: item.lng ?? 0,
-  }));
+    const sanitizedItems = finalItinerary.map((item) => ({
+      ...item,
+      lat: item.lat ?? 0,
+      lng: item.lng ?? 0,
+    }));
 
-  this.firestoreService.addItinerary({ 
-    createdAt: new Date(),
-    items: sanitizedItems
-  })
-  .then(() => alert('Itinerario guardado en Firestore!'))
-  .catch((err) => {
-    console.error('Error guardando itinerario:', err);
-    alert('Error guardando itinerario. Revisa la consola.');
-  });
-}
-
-
+    this.firestoreService
+      .addItinerary({ createdAt: new Date(), items: sanitizedItems })
+      .then(() => alert('Itinerario guardado en Firestore!'))
+      .catch((err) => {
+        console.error('Error guardando itinerario:', err);
+        alert('Error guardando itinerario. Revisa la consola.');
+      });
+  }
 }
