@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -15,7 +14,7 @@ export class Tab3Page {
   
   user: any;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private router: Router) {
   }
 
   onButtonClick() {

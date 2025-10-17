@@ -1,7 +1,8 @@
 <ion-content [fullscreen]="true">
   <br>
   <ion-list>
-    <form (ngSubmit)="onLogin()">
+    <!--(ngSubmit)="onLogin()"-->
+    <form >
       <ion-list> 
         <h1 class="titulo">Iniciar sesión</h1>
 
@@ -14,7 +15,8 @@
           </ion-col>
         </ion-row>
         <ion-item>
-          <ion-input class="form-login" [(ngModel)]="email" 
+          <!--[(ngModel)]="email"-->
+          <ion-input class="form-login"  
             fill="solid"
             name="email" 
             placeholder="Correo"
@@ -27,7 +29,8 @@
           </ion-col>
         </ion-row>
         <ion-item>
-          <ion-input class="form-login" [(ngModel)]="password" 
+          <!--[(ngModel)]="password"-->
+          <ion-input class="form-login" 
             fill="solid"
             name="password" 
             type="password"
