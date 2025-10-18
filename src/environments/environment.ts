@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   weatherApiKey: 'fdb9df792e8c62ebc883503d40ad6f0a',
-  googleMapsApiKey: 'AIzaSyB0i-xFpRU_33nfrc-76I0VRjJgUJrQJ6E',
+  googleMapsApiKey: 'AIzaSyDq2x5bWuKDPADCzlbjZswK5KPNDcu69g4',
   firebaseConfig : {
   apiKey: "AIzaSyA7Fen_mTkdzDY7spPh0Kp-uU4Hn7INNrY",
   authDomain: "tripgo-473722.firebaseapp.com",

@@ -12,10 +12,10 @@ export const routes: Routes = [
     path: 'flujo-itinerario',
       loadComponent: () => import('./pages/flujo-itinerario/flujo-itinerario.component')
       .then(m => m.FlujoItinerarioComponent)
-  }
-  /*
+  },
+  
   {
-    path: '',
+    path: 'login',
     redirectTo: 'login',
     pathMatch: 'full'
   },
@@ -27,5 +27,5 @@ export const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./pages/tabs-folder/tabs/tabs.routes').then(m => m.routes)
   },
-  */
+ 
 ];
