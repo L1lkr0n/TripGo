@@ -31,9 +31,6 @@ repositories {
 }
 
 dependencies {
-    implementation platform('com.google.firebase:firebase-bom:33.3.0')
-    implementation "com.google.firebase:firebase-auth"
-    implementation "com.google.firebase:firebase-firestore"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
@@ -46,7 +43,6 @@ dependencies {
 }
 
 apply from: 'capacitor.build.gradle'
-apply plugin: 'com.google.gms.google-services'
 
 try {
     def servicesJSON = file('google-services.json')
