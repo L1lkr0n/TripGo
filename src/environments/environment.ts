@@ -6,16 +6,15 @@ export const environment = {
   production: false,
   weatherApiKey: 'fdb9df792e8c62ebc883503d40ad6f0a',
   googleMapsApiKey: 'AIzaSyDq2x5bWuKDPADCzlbjZswK5KPNDcu69g4',
-  firebaseConfig : {
-  apiKey: "AIzaSyA7Fen_mTkdzDY7spPh0Kp-uU4Hn7INNrY",
-  authDomain: "tripgo-473722.firebaseapp.com",
-  projectId: "tripgo-473722",
-  storageBucket: "tripgo-473722.firebasestorage.app",
-  messagingSenderId: "274317341753",
-  appId: "1:274317341753:android:56da671d1593231e4ec9e8"
-}
+  firebaseConfig: {
+    apiKey: 'AIzaSyBgQmBx3rv0mB5wKuFktCK4wKp1H_ncqJA',
+    authDomain: 'tripgo-33d99.firebaseapp.com',
+    projectId: 'tripgo-33d99',
+    storageBucket: 'tripgo-33d99.firebasestorage.app',
+    messagingSenderId: '422619574663',
+    appId: '1:422619574663:web:6689b9e260c18f1c21e322',
+  },
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file

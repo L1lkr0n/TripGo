@@ -1,65 +1,42 @@
 <ion-content [fullscreen]="true">
-  <br>
-  <ion-list>
-    <!--(ngSubmit)="onLogin()"-->
-    <form >
-      <ion-list> 
-        <h1 class="titulo">Iniciar sesión</h1>
+  <form (ngSubmit)="onLogin()">
+    <ion-list>
+      <h1 class="titulo">Iniciar sesión</h1>
 
-        <br>
-        <br>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        ></ion-input>
+      </ion-item>
 
-        <ion-row class="flex">
-          <ion-col class="label">
-            <a>EMAIL</a>
-          </ion-col>
-        </ion-row>
-        <ion-item>
-          <!--[(ngModel)]="email"-->
-          <ion-input class="form-login"  
-            fill="solid"
-            name="email" 
-            placeholder="Correo"
-            type="email" required></ion-input>
-        </ion-item>
-        <br>
-        <ion-row class="flex">
-          <ion-col class="label">
-            <a>CONTRASEÑA</a>
-          </ion-col>
-        </ion-row>
-        <ion-item>
-          <!--[(ngModel)]="password"-->
-          <ion-input class="form-login" 
-            fill="solid"
-            name="password" 
-            type="password"
-            placeholder="Contraseña" 
-            type="password" required></ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        ></ion-input>
+      </ion-item>
 
-        <br>
+      <ion-button
+        expand="block"
+        type="submit"
+        color="primary"
+        class="iniciar-sesion"
+      >
+        Iniciar Sesión
+      </ion-button>
 
-        <ion-row class="flex">
-          <ion-col class="olvido">
-            <a routerLink="/reset-password" class="link-recupera">
-              ¿Olvidó su contraseña?
-            </a>
-          </ion-col>
-        </ion-row>
-        <br>
-        <ion-button fill="outline" expand="block" type="submit" class="iniciar-sesion">Iniciar Sesion</ion-button>
-
-      </ion-list>
-    </form>
-    <br>
-    <ion-row>
-      <ion-col class="flex">
-        <label>aun no tiene una cuenta?</label>
-      </ion-col>
-    </ion-row>
-    <h3 class="registrarse">Registrarse</h3>
-
-  </ion-list>
-
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <a routerLink="/register">¿No tienes cuenta? Regístrate</a>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
 </ion-content>
